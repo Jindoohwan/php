@@ -46,13 +46,13 @@ td, th {
 	$select_query = 'SELECT post_id, post_title, post_name, post_content FROM jindoohwan.board';
 	$result_set = mysqli_query ($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
-		if($number === $row.['post_id']) {
+		if($number === $row['post_id']) {
 			echo '<tr>'.'<th>번호</tr>';
-			echo '<td>'.$row.['post_id'].'</td>'.'</tr>';
+			echo '<td>'.$row['post_id'].'</td>'.'</tr>';
 			echo '<tr>'.'<th>제목</tr>';
-			echo '<td>'.$row.['post_title'].'</td>'.'</tr>';
+			echo '<td>'.$row['post_title'].'</td>'.'</tr>';
 			echo '<tr>'.'<th>이름</tr>';
-			echo '<td>'.$row.['post_name'].'</td>'.'</tr>';
+			echo '<td>'.$row['post_name'].'</td>'.'</tr>';
 		}
 	}
 ?>
