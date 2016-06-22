@@ -51,7 +51,7 @@ td, th {
 	while ($row = mysqli_fetch_assoc($result_set)) {
 			echo "<tr>";
 			echo "<td>".$row['post_id']."</td>";
-			echo "<td><a href = 'view_post.php?number = ".$row.['post_id']."> ".$row.['post_title']." </a></td>";
+			echo "<td><a href = \"view_post.php?number = $row['post_id']\">$row['post_title'] </a></td>";
 			echo "<td>".$row['post_name']."</td>";
 			echo "</tr>";
 		}
