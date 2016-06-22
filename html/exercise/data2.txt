@@ -1,0 +1,4 @@
+student	2
+body	3
+a	4
+b	5
