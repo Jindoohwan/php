@@ -1,6 +1,6 @@
 <?php 
-	$db_hostname = 'localhost';
-	$db_database = 'jindoohwan';
-	$db_username = 'root';
-	$db_password = '1234';
+	$db_hostname = 'kocia.cytzyor3ndjk.ap-northeast-2.rds.amazonaws.com';;
+	$db_database = 'Jindoohwan';
+	$db_username = 'Jindoohwan';
+	$db_password = 'password';
 ?>

@@ -2,9 +2,21 @@
 <html>
 <head>
 <style type="text/css">
-.wrap { margin:0 auto; width:50%; margin-top:50px; }
-table { width:100%; border:5px solid #EAEAEA; border-collapse:collapse; }
-td, th { border:3px solid #EAEAEA; padding:15px; text-align:center; }
+.wrap { 
+		margin:0 auto; 
+		width:50%; 
+		margin-top:50px; 
+	}
+table { 
+		width:100%; 
+		border:5px solid #EAEAEA; 
+		border-collapse:collapse;		
+	}
+td, th { 
+		border:3px solid #EAEAEA; 
+		padding:15px; 
+		text-align:center; 
+		}
 A:link { text-decoration:none }
 </style>
 <title>진두환</title>

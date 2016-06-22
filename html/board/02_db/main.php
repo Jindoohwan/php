@@ -6,20 +6,21 @@
 .wrap {
 		margin:0 
 		auto;width:50%;
-		margin-top:50px;}
+		margin-top:50px;
+		}
 table {
 		width:100%;
 		border:5px solid #EAEAEA;
 		border-collapse:collapse;
-		}
-.num {
-		width:10%;
 		}
 td, th {
 		border:3px solid #EAEAEA;
 		padding:10px;
 		text-align:center;
 		}
+.top {
+		background:#FFFF48;
+	}			
 .w_btn {
 		float:right;text-decoration:none;
 		padding:10px;
@@ -27,36 +28,30 @@ td, th {
 		background:#EAEAEA;
 		color:#000;
 		}
-#img {
-		margin:0 auto;
-		width:100%;
-		} <!-- id 사용하여 css 구현 -->
 </style>
 </head>
 <body>
 <div class="wrap">
 <table>
-<tr><th colspan = "3"><h2>게시판</h2></th></tr>
+<tr><th colspan = "3" class = "top"><h2>게시판</h2></th></tr>
 <tr><th>번호</th> <th>제목</th> <th>이름</th></tr>
 
 <?php
 	require_once 'login.php';
 	$db_server = mysqli_connect($db_hostname, $db_username, $db_password, $db_database);
+	mysqli_query($db_server, "SET NAMES 'utf8'");
 		if (!$db_server) {
 			die('Mysql connection failed: '.mysqli_connect_error());
 		}
 	
-	$select_query = 'SELECT post_id, post_title, post_name FROM jindoohwan.board';
+	$select_query = 'SELECT post_id, post_title, post_name FROM Jindoohwan.board';
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
-			echo "<tr>";
 			echo "<td>".$row['post_id']."</td>";
 			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
 			echo "<td>".$row['post_name']."</td>";
-			echo "</tr>";
 		}
 ?>
-
 </table>
 <a class="w_btn" href = "write_post.php">글쓰기</a><br>
 <br>

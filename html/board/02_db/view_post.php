@@ -17,6 +17,9 @@ td, th {
 	border:1px solid #EAEAEA;
 	padding:10px;text-align:center;
 	}
+.top {
+		background:#FFFF48;
+	}
 .w_btn {
 	float:right;
 	text-decoration:none;
@@ -32,18 +35,19 @@ td, th {
 <center><h1> 게시판 </h1></center>
 
 <table>
-<tr><th>번호</th><th>이름</th><th>제목</th><th>내용</th></tr>
+<tr class = "top"><th>번호</th><th>이름</th><th>제목</th><th>내용</th></tr>
 <?php
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		$number = $_GET['number'];	
 	}
 	require_once 'login.php';
 	$db_server = mysqli_connect($db_hostname, $db_username, $db_password, $db_database);
+	mysqli_query($db_server, "SET NAMES 'utf8'");
 	if (!$db_server) {
 		die('Mysql connection failed: '.mysqli_connect_error());
 	}
 	
-	$select_query = 'SELECT post_id, post_title, post_name, post_content FROM jindoohwan.board';
+	$select_query = 'SELECT post_id, post_title, post_name, post_content FROM Jindoohwan.board';
 	$result_set = mysqli_query ($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if($number === $row['post_id']) {

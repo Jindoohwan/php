@@ -22,15 +22,12 @@
 <?php
 	require_once 'login.php';
 	$db_server = mysqli_connect($db_hostname, $db_username, $db_password, $db_database);
+	mysqli_query($db_server, "SET NAMES 'utf8'");
 		if (!$db_server) {
 			die('Mysql connection failed: '.mysqli_connect_error());
 		}
-		
-	//if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		//$num = $_POST['post_id'];
-	//}
 	
-	$select_query = 'SELECT post_id FROM jindoohwan.board';
+	$select_query = 'SELECT post_id FROM Jindoohwan.board';
 	$result_set = mysqli_query($db_server, $select_query);
 	if ($row = mysqli_fetch_assoc($result_set)) {
 		$delete_query = "DELETE FROM board WHERE post_id = ".$row['post_id']."";
