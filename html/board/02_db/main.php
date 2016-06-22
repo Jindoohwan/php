@@ -36,7 +36,7 @@ td, th {
 <body>
 <div class="wrap">
 <table>
-<tr><th><h2>게시판</h2></th></tr>
+<tr><th colspan = "3"><h2>게시판</h2></th></tr>
 <tr><th>번호</th> <th>제목</th> <th>이름</th></tr>
 
 <?php
@@ -47,15 +47,14 @@ td, th {
 		}
 	
 	$select_query = 'SELECT post_id, post_title, post_name FROM jindoohwan.board';
-	$result_set = mysql_query($db_server, $select_query);
+	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
 			echo "<tr>";
 			echo "<td>".$row['post_id']."</td>";
-			echo "<td><a href = \"view_post.php?number = $row['post_id']\">$row['post_title'] </a></td>";
+			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
 			echo "<td>".$row['post_name']."</td>";
 			echo "</tr>";
 		}
-	
 ?>
 
 </table>

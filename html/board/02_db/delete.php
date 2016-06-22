@@ -26,24 +26,21 @@
 			die('Mysql connection failed: '.mysqli_connect_error());
 		}
 		
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$title = $_POST['title'];
-		$name = $_POST['name'];
-		$content = $_POST['content'];
-	}
+	//if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		//$num = $_POST['post_id'];
+	//}
 	
-	if($title && $name && $content === false){
-		echo "작성 실패...<br><br>";
+	$select_query = 'SELECT post_id FROM jindoohwan.board';
+	$result_set = mysqli_query($db_server, $select_query);
+	if ($row = mysqli_fetch_assoc($result_set)) {
+		$delete_query = "DELETE FROM board WHERE post_id = ".$row['post_id']."";
+		if(mysqli_query($db_server, $delete_query) === false){
+			echo mysqli_error($db_server);
+		}
+		echo "삭제 성공..! <br><br>";
 		echo "<a class = 'w_btn' href='main.php'>메인으로</a><br>";
 	}
-	
-	$insert_query = "INSERT INTO board(post_title, post_name, post_content) values('" . $title . "','" . $name . "','" . $content . "') ";		
-	if (mysqli_query($db_server, $insert_query) === false) {
-		echo mysqli_error($db_server);
-	} else {
-	echo "작성 성공..! <br><br>";
-	echo "<a class = 'w_btn' href='main.php'>메인으로</a><br>";
-	}
+		
 	mysqli_close($db_server);
 ?>
 </div>

@@ -32,7 +32,7 @@ td, th {
 <center><h1> 게시판 </h1></center>
 
 <table>
-
+<tr><th>번호</th><th>이름</th><th>제목</th><th>내용</th></tr>
 <?php
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		$number = $_GET['number'];	
@@ -47,16 +47,16 @@ td, th {
 	$result_set = mysqli_query ($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if($number === $row['post_id']) {
-			echo '<tr>'.'<th>번호</tr>';
-			echo '<td>'.$row['post_id'].'</td>'.'</tr>';
-			echo '<tr>'.'<th>제목</tr>';
-			echo '<td>'.$row['post_title'].'</td>'.'</tr>';
-			echo '<tr>'.'<th>이름</tr>';
-			echo '<td>'.$row['post_name'].'</td>'.'</tr>';
+			echo '<td>'.$row['post_id'].'</td>';
+			echo '<td>'.$row['post_name'].'</td>';
+			echo '<td>'.$row['post_title'].'</td>';
+			echo '<td>'.$row['post_content'].'</td>';
 		}
 	}
 ?>
 </table>
+<br>
+<a href = "delete.php"><button>삭제</button></a>
 <a class="w_btn" href = "main.php">메인으로</a><br>
 </div>
 </body>
