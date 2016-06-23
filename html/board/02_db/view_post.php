@@ -32,7 +32,7 @@ td, th {
 </head>
 <body>
 <div class="wrap">
-<center><h1> 게시판 </h1></center>
+<center><h1> 게시판보기 </h1></center>
 
 <table>
 <tr class = "top"><th>번호</th><th>이름</th><th>제목</th><th>내용</th></tr>
@@ -47,12 +47,12 @@ td, th {
 		die('Mysql connection failed: '.mysqli_connect_error());
 	}
 	
-	$select_query = 'SELECT post_id, post_title, post_name, post_content FROM Jindoohwan.board';
+	$select_query = 'SELECT * FROM Jindoohwan.post';
 	$result_set = mysqli_query ($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if($number === $row['post_id']) {
 			echo '<td>'.$row['post_id'].'</td>';
-			echo '<td>'.$row['post_name'].'</td>';
+			echo '<td>'.$row['post_writer'].'</td>';
 			echo '<td>'.$row['post_title'].'</td>';
 			echo '<td>'.$row['post_content'].'</td>';
 		}
@@ -60,7 +60,8 @@ td, th {
 ?>
 </table>
 <br>
-<a href = "delete.php"><button>삭제</button></a>
+<a href = "delete.php?number=<?php echo $number;?>"><button>삭제</button></a>
+<a href = "change.php"><button>수정</button></a>
 <a class="w_btn" href = "main.php">메인으로</a><br>
 </div>
 </body>

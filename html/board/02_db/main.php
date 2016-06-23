@@ -5,7 +5,8 @@
 <style type="text/css">
 .wrap {
 		margin:0 
-		auto;width:50%;
+		auto;
+		width:50%;
 		margin-top:50px;
 		}
 table {
@@ -33,9 +34,8 @@ td, th {
 <body>
 <div class="wrap">
 <table>
-<tr><th colspan = "3" class = "top"><h2>게시판</h2></th></tr>
+<tr><th colspan = "3" class = "top"><h2>자유게시판</h2></th></tr>
 <tr><th>번호</th> <th>제목</th> <th>이름</th></tr>
-
 <?php
 	require_once 'login.php';
 	$db_server = mysqli_connect($db_hostname, $db_username, $db_password, $db_database);
@@ -43,19 +43,44 @@ td, th {
 		if (!$db_server) {
 			die('Mysql connection failed: '.mysqli_connect_error());
 		}
-	
-	$select_query = 'SELECT post_id, post_title, post_name FROM Jindoohwan.board';
+	$num = 1;
+	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id =".$num."";
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
+			echo "<tr>";
 			echo "<td>".$row['post_id']."</td>";
 			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
-			echo "<td>".$row['post_name']."</td>";
+			echo "<td>".$row['post_writer']."</td>";
+			echo "</tr>";
 		}
 ?>
 </table>
 <a class="w_btn" href = "write_post.php">글쓰기</a><br>
-<br>
-<br>
+<br><br>
+
+<table>
+<tr><th colspan = "3" class = "top"><h2>Q&A게시판</h2></th></tr>
+<tr><th>번호</th> <th>제목</th> <th>이름</th></tr>
+<?php
+	require_once 'login.php';
+	$db_server = mysqli_connect($db_hostname, $db_username, $db_password, $db_database);
+	mysqli_query($db_server, "SET NAMES 'utf8'");
+		if (!$db_server) {
+			die('Mysql connection failed: '.mysqli_connect_error());
+		}
+	$num = 2;
+	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id =".$num."";
+	$result_set = mysqli_query($db_server, $select_query);
+	while ($row = mysqli_fetch_assoc($result_set)) {
+			echo "<tr>";
+			echo "<td>".$row['post_id']."</td>";
+			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
+			echo "<td>".$row['post_writer']."</td>";
+			echo "</tr>";
+		}
+?>
+</table>
+<a class="w_btn" href = "write_post2.php">글쓰기</a><br><br><br>
 <a class="w_btn" href = "../../index.php">홈으로</a><br>
 </div>
 </body>

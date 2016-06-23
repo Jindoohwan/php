@@ -21,10 +21,9 @@
 </style>
 <body>
 <div class="wrap">
-<center><h1> 게시판작성 </h1></center>
-<form action="write_file.php" method="post">
+<center><h1> 게시판 수정</h1></center>
+<form action="change_db.php" method="post">
 제목: <input type="text" name="title"><br><br>
-이름: <input type="text" name="name"><br><br>
 내용: <textarea rows = "15" cols = "60" input type="text" name="content"></textarea>
 <input class = "r_btn" type="submit">
 </form>
