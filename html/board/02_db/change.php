@@ -4,7 +4,7 @@
 <style type="text/css">
 .wrap {
 	margin:0 auto;
-	width:50%;
+	width:30%;
 	margin-top:50px;
 	}
 .r_btn {
@@ -21,10 +21,10 @@
 </style>
 <body>
 <div class="wrap">
-<center><h1> 게시판 수정</h1></center>
+<center><h1> 게시판 수정</h1></center><br><br>
 <form action="change_db.php" method="post">
 제목: <input type="text" name="title"><br><br>
-내용: <textarea rows = "15" cols = "60" input type="text" name="content"></textarea>
+내용: <br><textarea rows = "10" cols = "50%" input type="text" name="content"></textarea><br><br>
 <input class = "r_btn" type="submit">
 </form>
 <a class="w_btn" href = "main.php">메인으로</a><br>

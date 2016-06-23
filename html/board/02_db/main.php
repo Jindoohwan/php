@@ -6,7 +6,7 @@
 .wrap {
 		margin:0 
 		auto;
-		width:50%;
+		width:30%;
 		margin-top:50px;
 		}
 table {
@@ -47,12 +47,13 @@ td, th {
 	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id =".$num."";
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
-			echo "<tr>";
-			echo "<td>".$row['post_id']."</td>";
-			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
-			echo "<td>".$row['post_writer']."</td>";
-			echo "</tr>";
-		}
+		echo "<tr>";
+		echo "<td>".$row['post_id']."</td>";
+		printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
+		echo "<td>".$row['post_writer']."</td>";
+		echo "</tr>";
+	}
+	mysqli_close($db_server);
 ?>
 </table>
 <a class="w_btn" href = "write_post.php">글쓰기</a><br>
@@ -72,12 +73,13 @@ td, th {
 	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id =".$num."";
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
-			echo "<tr>";
-			echo "<td>".$row['post_id']."</td>";
-			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
-			echo "<td>".$row['post_writer']."</td>";
-			echo "</tr>";
-		}
+		echo "<tr>";
+		echo "<td>".$row['post_id']."</td>";
+		printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
+		echo "<td>".$row['post_writer']."</td>";
+		echo "</tr>";
+	}
+	mysqli_close($db_server);
 ?>
 </table>
 <a class="w_btn" href = "write_post2.php">글쓰기</a><br><br><br>

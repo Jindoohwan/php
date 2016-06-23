@@ -4,7 +4,7 @@
 <style type="text/css">
 .wrap {
 	margin:0 auto;
-	width:50%;
+	width:30%;
 	margin-top:50px;
 	}
 .w_btn {

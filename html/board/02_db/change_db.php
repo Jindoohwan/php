@@ -4,7 +4,7 @@
 <style type="text/css">
 .wrap {
 	margin:0 auto;
-	width:50%;
+	width:30%;
 	margin-top:50px;
 	}
 .w_btn {
@@ -20,10 +20,7 @@
 <div class="wrap">
 <center><h1> 게시판수정 </h1></center>
 <?php
-	
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$num = $_POST['num'];
-		$writer = $_POST['writer'];
 		$title = $_POST['title'];
 		$content = $_POST['content'];
 	}
@@ -34,16 +31,16 @@
 	if (!$db_server) {
 		die('Mysql connection failed: '.mysqli_connect_error());
 	}
-	$select_query = 'SELECT * FROM Jindoohwan.post';
+	$select_query = 'SELECT post_id FROM Jindoohwan.post';
 	$result_set = mysqli_query($db_server, $select_query);
-	
-	//$update_query = "UPDATE post SET post_title =".$title.", post_content =".$content." WHERE post_id = ".$number."";
-	if(mysqli_query($db_server, $update_query) === false){
-		echo mysqli_error($db_server);
+	while ($row = mysqli_fetch_assoc($result_set)) {
+		$update_query = "UPDATE post SET post_title =".$title.", post_content =".		$content." WHERE post_title, post_content";
+		if(mysqli_query($db_server, $update_query) === false){
+			echo mysqli_error($db_server);
+		}
+		echo "게시판 수정 성공..! <br><br>";
+		echo "<a class = 'w_btn' href='main.php'>메인으로</a><br>";
 	}
-	echo "게시판 수정 성공..! <br><br>";
-	echo "<a class = 'w_btn' href='view_post.php'>글목록으로</a><br>";
-	
 	
 	mysqli_close($db_server);
 ?>

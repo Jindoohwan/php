@@ -5,7 +5,7 @@
 <style type="text/css">
 .wrap {
 	margin:0 auto;
-	width:50%;
+	width:30%;
 	margin-top:50px;
 	}
 table {
@@ -57,11 +57,12 @@ td, th {
 			echo '<td>'.$row['post_content'].'</td>';
 		}
 	}
+	mysqli_close($db_server);
 ?>
 </table>
 <br>
 <a href = "delete.php?number=<?php echo $number;?>"><button>삭제</button></a>
-<a href = "change.php"><button>수정</button></a>
+<a href = "change.php?number=<?php echo $number;?>"><button>수정</button></a>
 <a class="w_btn" href = "main.php">메인으로</a><br>
 </div>
 </body>
