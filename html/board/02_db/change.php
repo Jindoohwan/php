@@ -1,24 +1,7 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <html>
-<style type="text/css">
-.wrap {
-	margin:0 auto;
-	width:30%;
-	margin-top:50px;
-	}
-.r_btn {
-	float:left;
-	}
-.w_btn {
-	float:right;
-	text-decoration:none;
-	padding:10px;
-	margin-top:10px;
-	background:#EAEAEA;
-	color:#000;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 <body>
 <div class="wrap">
 <center><h1> 게시판 수정</h1></center><br><br>

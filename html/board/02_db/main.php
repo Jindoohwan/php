@@ -2,34 +2,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <html>
 <head>
-<style type="text/css">
-.wrap {
-		margin:0 
-		auto;
-		width:30%;
-		margin-top:50px;
-		}
-table {
-		width:100%;
-		border:5px solid #EAEAEA;
-		border-collapse:collapse;
-		}
-td, th {
-		border:3px solid #EAEAEA;
-		padding:10px;
-		text-align:center;
-		}
-.top {
-		background:#FFFF48;
-	}			
-.w_btn {
-		float:right;text-decoration:none;
-		padding:10px;
-		margin-top:10px;
-		background:#EAEAEA;
-		color:#000;
-		}
-</style>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 <div class="wrap">

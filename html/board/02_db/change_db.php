@@ -1,21 +1,9 @@
 <!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <html>
-<style type="text/css">
-.wrap {
-	margin:0 auto;
-	width:30%;
-	margin-top:50px;
-	}
-.w_btn {
-	float:right;
-	text-decoration:none;
-	padding:10px;
-	margin-top:10px;
-	background:#EAEAEA;
-	color:#000;
-	}
-</style>
+<head>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
 <body>
 <div class="wrap">
 <center><h1> 게시판수정 </h1></center>
@@ -32,7 +20,8 @@
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if($number === $row['post_id']) {
-			$update_query = "UPDATE post SET title=".$title.", content =".$content." WHERE post_id =" .$number."";
+			$update_query = "UPDATE Jindoohwan.post SET title ='".$title."', content ='".$content."' WHERE post_id =".$row['post_id']."";
+			//" "컬럼명으로봄 ' '컬럼안의 문자열로봄
 			if(mysqli_query($db_server, $update_query) === false){
 				echo mysqli_error($db_server);
 			}
