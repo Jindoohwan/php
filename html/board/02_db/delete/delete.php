@@ -17,11 +17,13 @@
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if($number === $row['post_id']) {
 			$delete_query = "DELETE FROM post WHERE post_id = ".$row['post_id']."";
-			if(mysqli_query($db_server, $delete_query) === false){
+			$delete_query2 = "DELETE FROM comment WHERE post_id = ".$row['post_id']."";
+			mysqli_query($db_server, $delete_query2); //있는 댓글 삭제하고 게시물삭제
+			if (mysqli_query($db_server, $delete_query) === false){
 				echo mysqli_error($db_server);
 			}
 			echo "삭제 성공..! <br><br>";
-			echo "<a class = 'w_btn' href='main.php'>메인으로</a><br>";
+			echo "<a class = 'w_btn' href='../main.php'>메인으로</a><br>";
 		}
 	}	
 	mysqli_close($db_server);

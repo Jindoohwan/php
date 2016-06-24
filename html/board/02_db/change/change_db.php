@@ -26,7 +26,7 @@
 				echo mysqli_error($db_server);
 			}
 			echo "게시판 수정 성공..! <br><br>";
-			echo "<a class = 'w_btn' href='main.php'>메인으로</a><br>";
+			echo "<a class = 'w_btn' href='../main.php'>메인으로</a><br>";
 		}
 	}
 	mysqli_close($db_server);

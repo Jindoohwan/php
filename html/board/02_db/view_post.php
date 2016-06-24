@@ -28,11 +28,27 @@
 	}
 	mysqli_close($db_server);
 ?>
-</table>
-<br>
-<a href = "delete.php?number=<?php echo $number;?>"><button>삭제</button></a>
-<a href = "change.php"><button>수정</button></a>
-<a class="w_btn" href = "main.php">메인으로</a><br>
+</table><br>
+<a href = "delete/delete.php?number=<?php echo $number;?>"><button>게시물삭제</button></a>
+<a href = "change/change.php"><button>게시물수정</button></a><br><br><br><br>
+
+<h3>댓글</h3>
+<!--<tr><th>이름</th><th>내용</th></tr>-->
+<?php
+	require_once 'C:/git/php/includes/mylib.php';
+	$db_server = get_connection();
+	$select_query = 'SELECT * FROM Jindoohwan.comment';
+	$result_set = mysqli_query ($db_server, $select_query);
+	while ($row = mysqli_fetch_assoc($result_set)) {
+		if ($number === $row['post_id']) {
+			echo $row['writer'].' : '.$row['content'].'<br>';
+		}
+	}
+	mysqli_close($db_server);
+?>
+<br><br>
+<a href = "comment/comment.php"><button>댓글쓰기</button></a>
+<br><a class="w_btn" href = "main.php">메인으로</a><br>
 </div>
 </body>
 </html>

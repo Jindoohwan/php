@@ -12,7 +12,7 @@
 <input class = "r_btn" type="submit">
 
 </form>
-<a class="w_btn" href = "main.php">메인으로</a><br>
+<a class="w_btn" href = "../main.php">메인으로</a><br>
 </div>
 </body>
 </html>
