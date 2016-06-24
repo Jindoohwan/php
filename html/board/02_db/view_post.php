@@ -40,13 +40,8 @@ td, th {
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		$number = $_GET['number'];	
 	}
-	require_once 'login.php';
-	$db_server = mysqli_connect($db_hostname, $db_username, $db_password, $db_database);
-	mysqli_query($db_server, "SET NAMES 'utf8'");
-	if (!$db_server) {
-		die('Mysql connection failed: '.mysqli_connect_error());
-	}
-	
+	require_once 'C:/git/php/includes/mylib.php';
+	$db_server = get_connection();
 	$select_query = 'SELECT * FROM Jindoohwan.post';
 	$result_set = mysqli_query ($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
@@ -62,7 +57,7 @@ td, th {
 </table>
 <br>
 <a href = "delete.php?number=<?php echo $number;?>"><button>삭제</button></a>
-<a href = "change.php?number=<?php echo $number;?>"><button>수정</button></a>
+<a href = "change.php"><button>수정</button></a>
 <a class="w_btn" href = "main.php">메인으로</a><br>
 </div>
 </body>

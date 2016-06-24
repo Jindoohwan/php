@@ -26,12 +26,8 @@
 		$content = $_POST['content'];
 	}
 	
-	require_once 'login.php'; 
-	$db_server = mysqli_connect($db_hostname, $db_username, $db_password, $db_database);
-	mysqli_query($db_server, "SET NAMES 'utf8'");
-	if (!$db_server) {
-		die('Mysql connection failed: '.mysqli_connect_error());
-	}
+	require_once 'C:/git/php/includes/mylib.php';
+	$db_server = get_connection();
 	$select_query = 'SELECT * FROM Jindoohwan.post';
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {

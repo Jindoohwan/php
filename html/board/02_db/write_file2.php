@@ -20,18 +20,14 @@
 <div class="wrap">
 <center><h1> 게시판작성 </h1></center>
 <?php
-	require_once 'login.php';
-	$db_server = mysqli_connect($db_hostname, $db_username, $db_password, $db_database);
-	mysqli_query($db_server, "SET NAMES 'utf8'");
-		if (!$db_server) {
-			die('Mysql connection failed: '.mysqli_connect_error());
-		}
-		
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$title = $_POST['title'];
 		$writer = $_POST['name'];
 		$content = $_POST['content'];
 	}
+	
+	require_once 'C:/git/php/includes/mylib.php';
+	$db_server = get_connection();
 	
 	if($title && $writer && $content === false){
 		echo "작성 실패...<br><br>";
