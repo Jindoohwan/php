@@ -38,7 +38,7 @@
 		echo "<a class = 'w_btn' href='main.php'>메인으로</a><br>";
 	}
 	$num = 1; //board_id 가 1 이면 자유게시판
-	$insert_query = "INSERT INTO post(post_title, post_writer, post_content, board_id) values('" . $title . "','" . $writer . "','" . $content . "','" .$num. "') ";
+	$insert_query = "INSERT INTO post(title, writer, content, board_id) values('" . $title . "','" . $writer . "','" . $content . "','" .$num. "') ";
 	if (mysqli_query($db_server, $insert_query) === false) {
 		echo mysqli_error($db_server);
 	} else {

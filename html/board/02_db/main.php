@@ -43,15 +43,14 @@ td, th {
 		if (!$db_server) {
 			die('Mysql connection failed: '.mysqli_connect_error());
 		}
-	$num = 1;
-	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id =".$num."";
+	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id = 1";
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
-		echo "<tr>";
-		echo "<td>".$row['post_id']."</td>";
-		printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
-		echo "<td>".$row['post_writer']."</td>";
-		echo "</tr>";
+			echo "<tr>";
+			echo "<td>".$row['post_id']."</td>";
+			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['title']);
+			echo "<td>".$row['writer']."</td>";
+			echo "</tr>";
 	}
 	mysqli_close($db_server);
 ?>
@@ -69,15 +68,14 @@ td, th {
 		if (!$db_server) {
 			die('Mysql connection failed: '.mysqli_connect_error());
 		}
-	$num = 2;
-	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id =".$num."";
+	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id = 2";
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
-		echo "<tr>";
-		echo "<td>".$row['post_id']."</td>";
-		printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['post_title']);
-		echo "<td>".$row['post_writer']."</td>";
-		echo "</tr>";
+			echo "<tr>";
+			echo "<td>".$row['post_id']."</td>";
+			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['title']);
+			echo "<td>".$row['writer']."</td>";
+			echo "</tr>";
 	}
 	mysqli_close($db_server);
 ?>

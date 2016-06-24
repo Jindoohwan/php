@@ -42,8 +42,7 @@
 			echo "삭제 성공..! <br><br>";
 			echo "<a class = 'w_btn' href='main.php'>메인으로</a><br>";
 		}
-	}
-		
+	}	
 	mysqli_close($db_server);
 ?>
 </div>

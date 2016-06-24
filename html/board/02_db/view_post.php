@@ -52,9 +52,9 @@ td, th {
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if($number === $row['post_id']) {
 			echo '<td>'.$row['post_id'].'</td>';
-			echo '<td>'.$row['post_writer'].'</td>';
-			echo '<td>'.$row['post_title'].'</td>';
-			echo '<td>'.$row['post_content'].'</td>';
+			echo '<td>'.$row['writer'].'</td>';
+			echo '<td>'.$row['title'].'</td>';
+			echo '<td>'.$row['content'].'</td>';
 		}
 	}
 	mysqli_close($db_server);
