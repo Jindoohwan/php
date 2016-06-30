@@ -26,7 +26,7 @@
 		echo "<a class = 'w_btn' href='comment.php'>댓글쓰기로</a><br>";
 	} else {
 	echo "댓글쓰기 성공..! <br><br>";
-	echo "<a class = 'w_btn' href='../main.php'>메인으로</a><br>";
+	printf("<a class=\"w_btn\" href = \"../view_post.php?number=%d\"> 게시물로 </a>", $num);
 	}
 	mysqli_close($db_server);
 ?>

@@ -30,7 +30,7 @@
 ?>
 </table><br>
 <a href = "delete/delete.php?number=<?php echo $number;?>"><button>게시물삭제</button></a>
-<a href = "change/change.php"><button>게시물수정</button></a><br><br><br><br>
+<a href = "change/change.php?number=<?php echo $number;?>"><button>게시물수정</button></a><br><br><br><br>
 
 <h3>댓글</h3>
 <!--<tr><th>이름</th><th>내용</th></tr>-->
@@ -41,14 +41,16 @@
 	$result_set = mysqli_query ($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if ($number === $row['post_id']) {
-			echo $row['writer'].' : '.$row['content'].'<br>';
+			echo $row['writer'].' : '.$row['content']."";
+			printf("<a class=\"r_btn\" href = \"comment/delete2.php?num=%d\">/삭제</a>",$row['comment_id']);
+			printf("<a class=\"r_btn\" href = \"comment/change2.php?num=%d\">수정/</a>",$row['comment_id']);
+			echo '<br>';
 		}
 	}
 	mysqli_close($db_server);
 ?>
 <br><br>
 <a href = "comment/comment.php"><button>댓글쓰기</button></a>
-<a href = "comment/comment.php"><button>댓글삭제</button></a>
 <br><a class="w_btn" href = "main.php">메인으로</a><br>
 </div>
 </body>
