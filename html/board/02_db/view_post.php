@@ -14,7 +14,7 @@
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		$number = $_GET['number'];	
 	}
-	require_once 'C:/git/php/includes/mylib.php';
+	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
 	$select_query = 'SELECT * FROM Jindoohwan.post';
 	$result_set = mysqli_query ($db_server, $select_query);
@@ -35,7 +35,7 @@
 <h3>댓글</h3>
 <!--<tr><th>이름</th><th>내용</th></tr>-->
 <?php
-	require_once 'C:/git/php/includes/mylib.php';
+	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
 	$select_query = 'SELECT * FROM Jindoohwan.comment';
 	$result_set = mysqli_query ($db_server, $select_query);
@@ -48,6 +48,7 @@
 ?>
 <br><br>
 <a href = "comment/comment.php"><button>댓글쓰기</button></a>
+<a href = "comment/comment.php"><button>댓글삭제</button></a>
 <br><a class="w_btn" href = "main.php">메인으로</a><br>
 </div>
 </body>
