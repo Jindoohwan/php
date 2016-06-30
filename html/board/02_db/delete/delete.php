@@ -10,7 +10,7 @@
 		$number = $_GET['number'];	
 	}
 	
-	require_once 'C:/git/php/includes/mylib.php';
+	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
 	$select_query = 'SELECT post_id FROM Jindoohwan.post';
 	$result_set = mysqli_query($db_server, $select_query);

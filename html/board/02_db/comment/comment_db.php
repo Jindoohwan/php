@@ -12,7 +12,7 @@
 		$content = $_POST['content'];
 	}
 	
-	require_once 'C:/git/php/includes/mylib.php';
+	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
 	
 	if($writer && $content === false){

@@ -10,7 +10,7 @@
 <tr><th colspan = "3" class = "top"><h2>자유게시판</h2></th></tr>
 <tr><th>번호</th> <th>제목</th> <th>이름</th></tr>
 <?php
-	require_once 'C:/git/php/includes/mylib.php';
+	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
 	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id = 1";
 	$result_set = mysqli_query($db_server, $select_query);
@@ -31,7 +31,7 @@
 <tr><th colspan = "3" class = "top"><h2>Q&A게시판</h2></th></tr>
 <tr><th>번호</th> <th>제목</th> <th>이름</th></tr>
 <?php
-	require_once 'C:/git/php/includes/mylib.php';
+	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
 	$select_query = "SELECT * FROM Jindoohwan.post WHERE board_id = 2";
 	$result_set = mysqli_query($db_server, $select_query);

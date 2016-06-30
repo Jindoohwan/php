@@ -11,7 +11,7 @@
 내용: <br><textarea rows = "10" cols = "50%" input type="text" name="content"></textarea><br><br>
 <input class = "r_btn" type="submit">
 </form>
-<a class="w_btn" href = "../main.php">메인으로</a><br>
+<a class="w_btn" href = "../view_post.php">뒤로가기</a><br>
 </div>
 </body>
 </html>
