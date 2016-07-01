@@ -6,13 +6,21 @@
 </head>
 <body>
 <div class="wrap">
-<center><h1> 게시판보기 </h1></center>
-
+<center><h1> 게시물보기 </h1></center>
 <table>
 <tr class = "top"><th>번호</th><th>이름</th><th>제목</th><th>내용</th></tr>
 <?php
-	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-		$number = $_GET['number'];	
+	require_once 'login/session.php';
+	start_session();
+	if (check_login()) {
+		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+			$number = $_GET['number'];
+			$id = $_GET['id'];
+		} 
+	} else {
+		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+			$number = $_GET['number'];
+		}
 	}
 	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
@@ -21,7 +29,8 @@
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if($number === $row['post_id']) {
 			echo '<td>'.$row['post_id'].'</td>';
-			echo '<td>'.$row['writer'].'</td>';
+			$userid = get_user_name($row['user_id']);
+			echo '<td>'.$userid.'</td>';
 			echo '<td>'.$row['title'].'</td>';
 			echo '<td>'.$row['content'].'</td>';
 		}
@@ -29,8 +38,18 @@
 	mysqli_close($db_server);
 ?>
 </table><br>
-<a href = "delete/delete.php?number=<?php echo $number;?>"><button>게시물삭제</button></a>
-<a href = "change/change.php?number=<?php echo $number;?>"><button>게시물수정</button></a><br><br><br><br>
+<?php 
+	if (check_login()) {
+		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+			$id = $_GET['id'];	
+		}
+		if($id == $userid) {
+			echo "<a href = \"delete/delete.php?id=".$id."&number=".$number."\"><button>게시판삭제</button></a> "; 
+			echo "<a href = \"change/change.php?id=".$id."&number=".$number."\"><button>게시판수정</button></a><br>";
+			echo "<br><br>";
+		}
+	}  
+?>
 
 <h3>댓글</h3>
 <!--<tr><th>이름</th><th>내용</th></tr>-->
@@ -51,7 +70,7 @@
 ?>
 <br><br>
 <a href = "comment/comment.php"><button>댓글쓰기</button></a>
-<br><a class="w_btn" href = "main.php">메인으로</a><br>
+<br><a class="w_btn" href = "main.php?id=<?php echo $id; ?>">메인으로</a><br>
 </div>
 </body>
 </html>

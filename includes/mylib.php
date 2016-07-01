@@ -13,4 +13,16 @@
 		
 		return $db_server;
 	}
+	
+	function get_user_name($user_id) { //유저아이디 번호로 이름 찾는 함수
+	require_once '../../../includes/mylib.php';
+	$db_server = get_connection();
+	$select_query = "SELECT user_id, username FROM user";
+	$result_set = mysqli_query($db_server, $select_query);
+	while ($row = mysqli_fetch_assoc($result_set)) {
+		if ($row['user_id'] == $user_id) {
+			return $row['username'];
+		}
+	}
+}
 ?>

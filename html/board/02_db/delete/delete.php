@@ -6,10 +6,12 @@
 <div class="wrap">
 <center><h1> 게시판삭제 </h1></center>
 <?php
+	require_once '../login/session.php';
+	start_session();
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-		$number = $_GET['number'];	
+		$number = $_GET['number'];
+		$id = $_GET['id'];
 	}
-	
 	require_once '../../../../includes/mylib.php';
 	$db_server = get_connection();
 	$select_query = 'SELECT post_id FROM Jindoohwan.post';
@@ -23,7 +25,7 @@
 				echo mysqli_error($db_server);
 			}
 			echo "삭제 성공..! <br><br>";
-			echo "<a class = 'w_btn' href='../main.php'>메인으로</a><br>";
+			echo "<a class = 'w_btn' href='../main.php?id=".$id."'>메인으로</a><br>";
 		}
 	}	
 	mysqli_close($db_server);
