@@ -21,10 +21,11 @@
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if($number2 === $row['comment_id']) {
-			$update_query = "UPDATE Jindoohwan.comment SET writer ='".$id."', content ='".$content."' WHERE comment_id =".$row['comment_id']."";
-			//" "컬럼명으로봄 ' '컬럼안의 문자열로봄
-			if(mysqli_query($db_server, $update_query) === false){
-				echo mysqli_error($db_server);
+			$update_query = 'UPDATE comment SET writer=?, content=? WHERE comment_id=?';
+			$stmt = mysqli_prepare($db_server, $update_query);
+			mysqli_stmt_bind_param($stmt, 'ssd', $id, $content, $row['comment_id']);
+			if (mysqli_stmt_execute($stmt) === false) {
+				die('INSERT query failure');
 			}
 			echo "댓글 수정 성공..! <br><br>";
 			printf("<a class=\"w_btn\" href = \"../view_post.php?number=%d&id=%s\"> 게시물로 </a>", $number, $id);
