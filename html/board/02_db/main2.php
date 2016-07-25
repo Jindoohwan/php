@@ -15,20 +15,19 @@
 		}
 		echo '['.$id.']님<br>';
 ?>	
-	<a href = "main2.php?id=<?php echo $id; ?>">Q&A게시판</a>
+	<a href = "main.php?id=<?php echo $id; ?>">자유게시판</a>
 	<a class = "r_btn" href = "login/logout.php"><button>로그아웃</button></a><br><br>
 
 <?php
 	} else {
 		$id = 0;
-?>
-	<a href = "main2.php?id=<?php echo $id; ?>">Q&A게시판</a>
+?>	
+	<a href = "main.php?id=<?php echo $id; ?>">자유게시판</a>
 	<a class = "r_btn" href = "login/index.php"><button>로그인하기</button></a><br><br>
 <?php
 	}
 	
 ?>
-
 <?php
 	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
@@ -58,16 +57,16 @@
 	}
 ?>
 <table>
-<tr><th colspan = "3" class = "top"><h2>자유게시판</h2></th></tr>
+<tr><th colspan = "3" class = "top"><h2>Q&A게시판</h2></th></tr>
 <tr><th>번호</th> <th>제목</th> <th>이름</th></tr>
-<?php
+<?php 
 	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
 	if (isset($_GET['src_value'])) {
 		$search = $_GET['src_value'];
-		$select_query = sprintf("SELECT * FROM post WHERE board_id =1 AND title LIKE '%%%s%%' ORDER BY post_id DESC LIMIT %d, %d", $search, $page_start, $page_num );
+		$select_query = sprintf("SELECT * FROM post WHERE board_id = 2 AND title LIKE '%%%s%%' ORDER BY post_id DESC LIMIT %d, %d", $search, $page_start, $page_num );
 	} else {
-		$select_query = sprintf("SELECT * FROM post WHERE board_id = 1 ORDER BY post_id DESC LIMIT %d, %d", $page_start, $page_num);
+		$select_query = sprintf("SELECT * FROM post WHERE board_id = 2 ORDER BY post_id DESC LIMIT %d, %d", $page_start, $page_num);
 	}
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
@@ -89,9 +88,9 @@
 		printf("[이전]");
 	}else{
 		if (isset($_GET['src_value'])) {
-			printf("[<a href='./main.php?page=%d&id=%s&src_value=%s'>이전</a>]", $block_start-1, $id, $search);
+			printf("[<a href='./main2.php?page=%d&id=%s&src_value=%s'>이전</a>]", $block_start-1, $id, $search);
 		} else {
-			printf("[<a href='./main.php?page=%d&id=%s'>이전</a>]", $block_start-1, $id);
+			printf("[<a href='./main2.php?page=%d&id=%s'>이전</a>]", $block_start-1, $id);
 		}
 	}
 	
@@ -100,10 +99,10 @@
 			printf("[<b>%d</b>]", $i);
 		}else {
 			if (isset($_GET['src_value'])) {
-				printf("[<a href='main.php?page=%d&id=%s&src_value=%s'>%d</a>]", $i, $id,$search, $i);
+				printf("[<a href='main2.php?page=%d&id=%s&src_value=%s'>%d</a>]", $i, $id,$search, $i);
 			}
 			else {
-				printf("[<a href='main.php?page=%d&id=%s'>%d</a>]", $i, $id, $i);
+				printf("[<a href='main2.php?page=%d&id=%s'>%d</a>]", $i, $id, $i);
 			}
 		}
 	}
@@ -112,14 +111,15 @@
 		printf("[다음]");
 	}else{
 		if (isset($_GET['src_value'])) {
-			printf("[<a href='./main.php?page=%d&id=%s&src_value=%s'>다음</a>]", $block_end, $id, $search);
+			printf("[<a href='./main2.php?page=%d&id=%s&src_value=%s'>다음</a>]", $block_end, $id, $search);
 		} else {
-			printf("[<a href='./main.php?page=%d&id=%s'>다음</a>]", $block_end, $id);
+			printf("[<a href='./main2.php?page=%d&id=%s'>다음</a>]", $block_end, $id);
 		}
 	}
 ?>
+
 <!-- 검색 입력 폼 --><br><br>
-<form action="main.php" method="get">
+<form action="main2.php" method="get">
 	<input type="hidden" name="id" value="<?php echo $id ?>">
 	<select name="src_name">
 	<option value="title" selected>제목</option>
@@ -128,25 +128,24 @@
 	<input type="submit" value=검색>
 </form><br>
 <!-- 전체목록 -->
-<form action="main.php" method="get">
+<form action="main2.php" method="get">
 	<input type="hidden" name="id" value="<?php echo $id ?>">
 	<input type="submit" value=전체목록>
 </form>
-
-<?php //글쓰기
+<?php 
 	if (check_login()) {
 		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$id = $_GET['id'];	
 		}
-		echo "<a class=\"w_btn\" href = \"login/write_post.php?id=".$id."\">글쓰기</a><br>";
+		echo "<a class=\"w_btn\" href = \"login/write_post2.php?id=".$id."\">글쓰기</a><br>";
 		echo "<br><br>";
 	} else {
 		echo "<a class=\"w_btn\" href = \"write.php\">글쓰기</a><br>";
 		echo "<br><br>";
-	}
+	}  
 	//메인
 	echo "<a class=\"w_btn\" href = \"../../index.php?id=".$id."\">메인으로</a><br>";
-?>
+?> 
 </div>
 </body>
 </html>

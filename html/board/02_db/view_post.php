@@ -40,9 +40,6 @@
 </table><br>
 <?php 
 	if (check_login()) {
-		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-			$id = $_GET['id'];	
-		}
 		if($id == $userid) {
 			echo "<a href = \"delete/delete.php?id=".$id."&number=".$number."\"><button>게시판삭제</button></a> "; 
 			echo "<a href = \"change/change.php?id=".$id."&number=".$number."\"><button>게시판수정</button></a><br>";
@@ -58,18 +55,29 @@
 	$db_server = get_connection();
 	$select_query = 'SELECT * FROM Jindoohwan.comment';
 	$result_set = mysqli_query ($db_server, $select_query);
-	while ($row = mysqli_fetch_assoc($result_set)) {
-		if ($number === $row['post_id']) {
-			echo $row['writer'].' : '.$row['content']."";
-			printf("<a class=\"r_btn\" href = \"comment/delete2.php?num=%d\">/삭제</a>",$row['comment_id']);
-			printf("<a class=\"r_btn\" href = \"comment/change2.php?num=%d\">수정/</a>",$row['comment_id']);
-			echo '<br>';
+	if (check_login()) {
+		while ($row = mysqli_fetch_assoc($result_set)) {
+			if ($number === $row['post_id']) {
+				echo $row['writer'].' : '.$row['content']."";
+				if($id == $row['writer']) {
+					printf("<a class=\"r_btn\" href = \"comment/delete2.php?num=%d&id=%s\">/삭제</a>",$row['comment_id'], $id);
+					printf("<a class=\"r_btn\" href = \"comment/change2.php?num=%d&num2=%d&id=%s\">수정/</a>", $number, $row['comment_id'], $id);
+				}
+				echo '<br>';
+			}
 		}
 	}
 	mysqli_close($db_server);
 ?>
 <br><br>
-<a href = "comment/comment.php"><button>댓글쓰기</button></a>
+<?php
+	if (check_login()) {
+		echo "<a href = \"comment/comment.php?id=".$id."&number=".$number."\"><button>댓글쓰기</button></a> "; 
+		echo "<br><br>";
+	} else {
+		echo "<a href = \"comment/nocomment.php\"><button>댓글쓰기</button></a> ";
+	}
+?>
 <br><a class="w_btn" href = "main.php?id=<?php echo $id; ?>">메인으로</a><br>
 </div>
 </body>

@@ -7,7 +7,8 @@
 <center><h1> 게시판삭제 </h1></center>
 <?php
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-		$number = $_GET['num'];	
+		$number = $_GET['num'];
+		$id = $_GET['id'];
 	}
 	
 	require_once '../../../../includes/mylib.php';
@@ -22,7 +23,7 @@
 				echo mysqli_error($db_server);
 			}
 			echo "댓글삭제 성공..! <br><br>";
-			printf("<a class=\"w_btn\" href = \"../view_post.php?number=%d\"> 게시물로 </a>", $row['post_id']);
+			printf("<a class=\"w_btn\" href = \"../view_post.php?number=%d&id=%s\"> 게시물로 </a>", $row['post_id'], $id);
 		}
 	}	
 	mysqli_close($db_server);

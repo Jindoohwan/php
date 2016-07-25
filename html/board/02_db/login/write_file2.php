@@ -19,9 +19,11 @@
 	while ($row = mysqli_fetch_assoc($result_set)) {
 		if ($id === $row['username']) {
 			$num = 2; //board_id 가 2 이면 Q&A게시판
-			$insert_query = "INSERT INTO post(user_id, title, content, board_id) values('" . $row['user_id'] . "','" . $title . "','" . $content . "','" .$num. "') ";
-			if (mysqli_query($db_server, $insert_query) === false) {
-				echo mysqli_error($db_server);
+			$insert_query = 'INSERT INTO post(user_id, title, content, board_id) values(?,?,?,?)';
+			$stmt = mysqli_prepare($db_server, $insert_query);
+			mysqli_stmt_bind_param($stmt, 'sssd', $row['user_id'], $title, $content, $num);
+			if (mysqli_stmt_execute($stmt) === false) {
+				die('INSERT query failure');
 			} else {
 				echo "작성 성공..! <br><br>";
 				echo "<a class = 'w_btn' href='../main.php?id=".$id."'>메인으로</a><br>";
