@@ -15,12 +15,14 @@
 	require_once '../../../../includes/mylib.php';
 	$db_server = get_connection();
 	
-	$insert_query = "INSERT INTO comment(writer, content, post_id) values('" . $id . "','" . $content . "','" .$num. "') ";
-	if (mysqli_query($db_server, $insert_query) === false) {
-		echo "댓글쓰기 실패..! 다시입력해주세요!<br>";
+	$insert_query = 'INSERT INTO comment(writer, content, post_id) values(?,?,?)';
+	$stmt = mysqli_prepare($db_server, $insert_query);
+	mysqli_stmt_bind_param($stmt, 'ssd', $id, $content, $num);
+	if (mysqli_stmt_execute($stmt) === false) {
+		die('INSERT query failure');
 	} else {
-	echo "댓글쓰기 성공..! <br><br>";
-	printf("<a class=\"w_btn\" href = \"../view_post.php?number=%d&id=%s\"> 게시물로 </a>", $num, $id);
+		echo "댓글쓰기 성공..! <br><br>";
+		printf("<a class=\"w_btn\" href = \"../view_post.php?number=%d&id=%s\"> 게시물로 </a>", $num, $id);
 	}
 	mysqli_close($db_server);
 ?>
