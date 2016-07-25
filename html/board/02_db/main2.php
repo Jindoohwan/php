@@ -73,9 +73,9 @@
 		echo "<tr>";
 		echo "<td>".$row['post_id']."</td>";
 		if (check_login()) {
-			printf("<td><a href = \"view_post.php?number=%d&id=%s\">%s </a></td>", $row['post_id'], $id, $row['title']);
+			printf("<td><a href = \"view_post.php?number=%d&id=%s\">%s </a></td>", $row['post_id'], $id, htmlspecialchars($row['title']));
 		} else {
-			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], $row['title']);
+			printf("<td><a href = \"view_post.php?number=%d\">%s </a></td>", $row['post_id'], htmlspecialchars($row['title']));
 		}
 		echo "<td>".get_user_name($row['user_id'])."</td>"; 
 		echo "</tr>";

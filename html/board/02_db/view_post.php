@@ -31,8 +31,8 @@
 			echo '<td>'.$row['post_id'].'</td>';
 			$userid = get_user_name($row['user_id']);
 			echo '<td>'.$userid.'</td>';
-			echo '<td>'.$row['title'].'</td>';
-			echo '<td>'.$row['content'].'</td>';
+			echo '<td>'.htmlspecialchars($row['title']).'</td>';
+			echo '<td>'.htmlspecialchars($row['content']).'</td>';
 		}
 	}
 	mysqli_close($db_server);
@@ -58,7 +58,7 @@
 	if (check_login()) {
 		while ($row = mysqli_fetch_assoc($result_set)) {
 			if ($number === $row['post_id']) {
-				echo $row['writer'].' : '.$row['content']."";
+				echo $row['writer'].' : '.htmlspecialchars($row['content'])."";
 				if($id == $row['writer']) {
 					printf("<a class=\"r_btn\" href = \"comment/delete2.php?num=%d&id=%s\">/삭제</a>",$row['comment_id'], $id);
 					printf("<a class=\"r_btn\" href = \"comment/change2.php?num=%d&num2=%d&id=%s\">수정/</a>", $number, $row['comment_id'], $id);
