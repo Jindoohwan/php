@@ -1,37 +1,42 @@
 function checkRegisterForm(form, id, password, password2) {
-/*    if (id.value == '' || 
+   if (id.value == '' || 
           password.value == '' ) {
         alert('아이디와 비밀번호는 빈칸 안됨');
         return false;
     }
-
+	
+	//ex1 1,2,3으로만 만들어진 문자열 (길이 1 이상)
+	//[1,2,3]+
+	
+	//ex2 0~9 /010-[0~9][""][""][""]-[""][""][""][""]/
+	
 	// 최소한 4자리
-    if (id.value.length < 4) {
-        alert('아이디는 4자리 이상이여야함');
-        id.focus();
-        return false;
-    }
+    // if (id.value.length < 4) {
+        // alert('아이디는 4자리 이상이여야함');
+        // id.focus();
+        // return false;
+    // }
     // id 검사
-    var re = /^\w+$/; 
-    if(!re.test(id.value)) { 
-        alert('아이디는 숫자와 영문자, _ 만 가능함'); 
-        id.focus();
-        return false; 
-    }
+    // var re = /^\w+$/; 
+    // if(!re.test(id.value)) { 
+        // alert('아이디는 숫자와 영문자, _ 만 가능함'); 
+        // id.focus();
+        // return false; 
+    // }
 
 	// 최소한 6자리
-    if (password.value.length < 6) {
-        alert('암호는 6자리 이상이여야함');
-        password.focus();
-        return false;
-    }
+    // if (password.value.length < 6) {
+        // alert('암호는 6자리 이상이여야함');
+        // password.focus();
+        // return false;
+    // }
     // 최소한 1개씩의 숫자, 영소문자, 영대문자
-    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/; 
-    if (!re.test(password.value)) {
-        alert('암호는 숫자, 영소문자, 영대문자를 1개씩 포함해야 함');
-		password.focus();
-        return false;
-    }
+    // var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/; 
+    // if (!re.test(password.value)) {
+        // alert('암호는 숫자, 영소문자, 영대문자를 1개씩 포함해야 함');
+		// password.focus();
+        // return false;
+    // }
  
 	// 암호 확인
     if (password.value != password2.value) {
@@ -39,7 +44,7 @@ function checkRegisterForm(form, id, password, password2) {
         password.focus();
         return false;
     }
- */
+
     // 해쉬 값을 포함할 요소 생성
     var hash = document.createElement("input");
     form.appendChild(hash);
