@@ -89,6 +89,7 @@ function ajaxDeleteReply(replyId) {
 		async: false,
 		data: { comment_id: replyId },
 		success: function(result) {
+			alert(result);
 		},
 		error: function(xhr) {
 			alert('ajaxDeleteReply');
@@ -155,8 +156,8 @@ function ajaxDeleteReply(replyId) {
 		echo '<th colspan=2>수정/삭제</th></tr>';
 		while ($row = mysqli_fetch_assoc($result_set)) {
 			if ($number === $row['post_id']) {
-				echo '<tr>';
-				echo '<td id="reply_id'.$row['comment_id'].'">'.$row['writer'].'</td>';
+				echo '<tr id="reply_id'.$row['comment_id'].'">';
+				echo '<td>'.$row['writer'].'</td>';
 				echo '<td id='.$row['comment_id'].'>'.htmlspecialchars($row['content']).'</td>';
 				echo '<td>';
 				echo '<form action="change2_db.php" method="post">';

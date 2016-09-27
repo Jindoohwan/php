@@ -1,39 +1,19 @@
-<!DOCTYPE html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-<body>
-<div class="wrap">
-<center><h1> 댓글수정 </h1></center>
-<?php
-	if ($_SERVER['REQUEST_METHOD'] == 'post') {
-		//$id = $_GET['id'];
+<?php 
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$id = $_POST['id'];
 		$content = $_POST['content'];
-		//$number = $_GET['number'];
-		//$number2 = $_GET['number2'];
+		$post_id = $_POST['post_id'];
 		$comment_id = $_POST['comment_id'];
 	}
-
 	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
-	//$select_query = 'SELECT * FROM Jindoohwan.comment';
-	//$result_set = mysqli_query($db_server, $select_query);
-	//while ($row = mysqli_fetch_assoc($result_set)) {
-		//if($number2 === $row['comment_id']) {
-			$update_query = 'UPDATE comment SET content=? WHERE comment_id=?';
-			$stmt = mysqli_prepare($db_server, $update_query);
-			mysqli_stmt_bind_param($stmt, 'sd', $content, $comment_id);
-			if (mysqli_stmt_execute($stmt) === false) {
-				die('INSERT query failure');
-			}
-			echo "댓글 수정 성공..! <br><br>";
-			//printf("<a class=\"w_btn\" href = \"../view_post.php?number=%d&id=%s\"> 게시물로 </a>", $number, $id);
-		//}
-	//}
+	$update_query = 'UPDATE comment SET content=? WHERE comment_id=?';
+	$stmt = mysqli_prepare($db_server, $update_query);
+	mysqli_stmt_bind_param($stmt, 'sd', $content, $comment_id);
+	if (mysqli_stmt_execute($stmt) === false) {
+		die('INSERT query failure');
+	}
+	echo "댓글 수정 성공..! <br><br>";
+	header("Location:view_post.php?number=$post_id&id=$id");
 	mysqli_close($db_server);
-?>
-</div>
-</body>
-</html>
+
