@@ -84,7 +84,7 @@ function deleteReply(replyId) {
 
 function ajaxDeleteReply(replyId) {
 	$.ajax({ 
-		url: 'comment/delete2.php',
+		url: 'delete2.php',
 		type: 'POST',
 		async: false,
 		data: { comment_id: replyId },
