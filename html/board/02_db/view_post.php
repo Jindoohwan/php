@@ -43,7 +43,7 @@ function editReply(button, replyId, form) {
 
 //댓글더보기
 var currentDisplayedReplies = 0;
-var replyBlockSize = 3;
+var replyBlockSize = 2; // 로컬에 보여주기위해 2개로 설정
 function showMoreReplies(button) {
 	var table = document.getElementById('reply_table');
 	var numTotalReplies = table.rows.length;
@@ -105,19 +105,19 @@ function ajaxDeleteReply(replyId) {
 <tr class = "top"><th>번호</th><th>이름</th><th>제목</th><th>내용</th></tr>
 <?php
 	require_once 'login/session.php';
-	start_session();
-	if (check_login()) {
+	start_session(); //세션
+	if (check_login()) { //로그인시
 		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$number = $_GET['number'];
 			$id = $_GET['id'];
 		} 
-	} else {
+	} else { //로그인아닐시
 		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$number = $_GET['number'];
 		}
 	}
 	require_once '../../../includes/mylib.php';
-	$db_server = get_connection();
+	$db_server = get_connection(); //DB접속
 	$select_query = 'SELECT * FROM Jindoohwan.post';
 	$result_set = mysqli_query ($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {
@@ -133,7 +133,7 @@ function ajaxDeleteReply(replyId) {
 ?>
 </table><br>
 <?php 
-	if (check_login()) {
+	if (check_login()) { //로그인 
 		if($id == $userid) {
 			echo "<a href = \"delete/delete.php?id=".$id."&number=".$number."\"><button>게시판삭제</button></a> "; 
 			echo "<a href = \"change/change.php?id=".$id."&number=".$number."\"><button>게시판수정</button></a><br>";
@@ -148,17 +148,16 @@ function ajaxDeleteReply(replyId) {
 	$db_server = get_connection();
 	$select_query = 'SELECT * FROM Jindoohwan.comment';
 	$result_set = mysqli_query ($db_server, $select_query);
-	if (check_login()) {
+	if (check_login()) { 
 		echo '<table id="reply_table">';
 		while ($row = mysqli_fetch_assoc($result_set)) {
 			if ($number === $row['post_id']) {
-				//echo $row['writer'].' : '.htmlspecialchars($row['content'])."";
 				echo '<tr id="reply_id'.$row['comment_id'].'"><th>작성자</th>';
-				echo '<td>'.$row['writer'].'</td>';
 				echo '<th>내용</th>';
+				echo '<th colspan=2>수정/삭제</th></tr>';
+				echo '<td>'.$row['writer'].'</td>';
 				echo '<td id='.$row['comment_id'].'>'.htmlspecialchars($row['content']).'</td>';
-				if($id == $row['writer']) {
-					
+				if($id == $row['writer']) { //자신의 댓글만 수정/삭제 가능
 					echo '<td>';
 					echo '<form action="change2_db.php" method="post">';
 					echo '<input type="hidden" name="id" value='.$id.'>';
@@ -171,7 +170,6 @@ function ajaxDeleteReply(replyId) {
 					echo '<input type="button" value="삭제" 
 					onClick="deleteReply('.$row['comment_id'].')">';
 					echo '</td>';
-					echo '</tr>';
 				}
 			}
 		}
@@ -181,7 +179,7 @@ function ajaxDeleteReply(replyId) {
 ?>
 <br><br>
 <?php
-	if (check_login()) {
+	if (check_login()) { //로그인시 댓글쓰기 가능
 		echo "<a href = \"comment/comment.php?id=".$id."&number=".$number."\"><button>댓글쓰기</button></a> "; 
 	}
 ?>

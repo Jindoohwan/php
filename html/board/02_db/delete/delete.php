@@ -7,13 +7,13 @@
 <center><h1> 게시판삭제 </h1></center>
 <?php
 	require_once '../login/session.php';
-	start_session();
-	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+	start_session(); //세션
+	if ($_SERVER['REQUEST_METHOD'] == 'GET') { 
 		$number = $_GET['number'];
 		$id = $_GET['id'];
 	}
 	require_once '../../../../includes/mylib.php';
-	$db_server = get_connection();
+	$db_server = get_connection(); //DB접속
 	$select_query = 'SELECT post_id FROM Jindoohwan.post';
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {

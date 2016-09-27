@@ -13,14 +13,14 @@
 		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$id = $_GET['id'];
 		}
-		echo '['.$id.']님<br>';
+		echo '['.$id.']님<br>'; //로그인시
 ?>	
 	<a href = "main.php?id=<?php echo $id; ?>">자유게시판</a>
 	<a class = "r_btn" href = "login/logout.php"><button>로그아웃</button></a><br><br>
 
 <?php
 	} else {
-		$id = 0;
+		$id = 0; //로그인아닐시
 ?>	
 	<a href = "main.php?id=<?php echo $id; ?>">자유게시판</a>
 	<a class = "r_btn" href = "login/index.php"><button>로그인하기</button></a><br><br>
@@ -59,11 +59,9 @@
 <table>
 <tr><th colspan = "3" class = "top"><h2>Q&A게시판</h2></th></tr>
 <tr><th>번호</th> <th>제목</th> <th>이름</th></tr>
-<?php 
-	require_once '../../../includes/mylib.php';
-	$db_server = get_connection();
+<?php //게시판 목록
 	if (isset($_GET['src_value'])) {
-		$search = $_GET['src_value'];
+		$search = $_GET['src_value']; //검색한 단어
 		$select_query = sprintf("SELECT * FROM post WHERE board_id = 2 AND title LIKE '%%%s%%' ORDER BY post_id DESC LIMIT %d, %d", $search, $page_start, $page_num );
 	} else {
 		$select_query = sprintf("SELECT * FROM post WHERE board_id = 2 ORDER BY post_id DESC LIMIT %d, %d", $page_start, $page_num);
@@ -84,10 +82,10 @@
 ?>
 </table><br>
 <?php
-	if($block_start == 1){
+	if($block_start == 1){ //페이징 목록
 		printf("[이전]");
 	}else{
-		if (isset($_GET['src_value'])) {
+		if (isset($_GET['src_value'])) { //검색한 단어가 있을시
 			printf("[<a href='./main2.php?page=%d&id=%s&src_value=%s'>이전</a>]", $block_start-1, $id, $search);
 		} else {
 			printf("[<a href='./main2.php?page=%d&id=%s'>이전</a>]", $block_start-1, $id);
@@ -98,7 +96,7 @@
 		if($i == $page){
 			printf("[<b>%d</b>]", $i);
 		}else {
-			if (isset($_GET['src_value'])) {
+			if (isset($_GET['src_value'])) { //검색한 단어가 있을시
 				printf("[<a href='main2.php?page=%d&id=%s&src_value=%s'>%d</a>]", $i, $id,$search, $i);
 			}
 			else {

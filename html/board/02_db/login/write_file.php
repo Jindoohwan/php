@@ -13,7 +13,7 @@
 	}
 	
 	require_once '../../../../includes/mylib.php';
-	$db_server = get_connection();
+	$db_server = get_connection(); //DB접속
 	$select_query = "SELECT * FROM user";
 	$result_set = mysqli_query($db_server, $select_query);
 	while ($row = mysqli_fetch_assoc($result_set)) {

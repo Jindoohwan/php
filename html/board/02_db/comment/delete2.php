@@ -4,28 +4,18 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <body>
 <div class="wrap">
-<center><h1> 게시판삭제 </h1></center>
+<center><h1> 댓글삭제 </h1></center>
 <?php
-	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-		$number = $_GET['num'];
-		$id = $_GET['id'];
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$comment_id = $_POST['comment_id'];
 	}
-	
-	require_once '../../../../includes/mylib.php';
+	require_once '../../../includes/mylib.php';
 	$db_server = get_connection();
-	$select_query = 'SELECT * FROM Jindoohwan.comment';
-	$result_set = mysqli_query($db_server, $select_query);
-	while ($row = mysqli_fetch_assoc($result_set)) {
-		if($number === $row['comment_id']) {
-			$delete_query = "DELETE FROM comment WHERE comment_id = ".$row['comment_id']."";
+			$delete_query = "DELETE FROM comment WHERE comment_id = ".$comment_id."";
 			mysqli_query($db_server, $delete_query); 
 			if (mysqli_query($db_server, $delete_query) === false){
 				echo mysqli_error($db_server);
 			}
-			echo "댓글삭제 성공..! <br><br>";
-			printf("<a class=\"w_btn\" href = \"../view_post.php?number=%d&id=%s\"> 게시물로 </a>", $row['post_id'], $id);
-		}
-	}	
 	mysqli_close($db_server);
 ?>
 </div>

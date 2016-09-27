@@ -13,7 +13,7 @@
 	}
 	
 	require_once '../../../../includes/mylib.php';
-	$db_server = get_connection();
+	$db_server = get_connection(); //DB접속
 	
 	$insert_query = 'INSERT INTO comment(writer, content, post_id) values(?,?,?)';
 	$stmt = mysqli_prepare($db_server, $insert_query);
