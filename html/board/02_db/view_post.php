@@ -43,7 +43,7 @@ function editReply(button, replyId, form) {
 
 //댓글더보기
 var currentDisplayedReplies = 0;
-var replyBlockSize = 2; // 로컬에 보여주기위해 2개로 설정
+var replyBlockSize = 3; //보여지는 댓글갯수
 function showMoreReplies(button) {
 	var table = document.getElementById('reply_table');
 	var numTotalReplies = table.rows.length;
@@ -139,7 +139,7 @@ function ajaxDeleteReply(replyId) {
 			echo "<a href = \"change/change.php?id=".$id."&number=".$number."\"><button>게시판수정</button></a><br>";
 			echo "<br><br>";
 		}
-	}  
+	}
 ?>
 
 <h3>댓글</h3>
@@ -150,27 +150,36 @@ function ajaxDeleteReply(replyId) {
 	$result_set = mysqli_query ($db_server, $select_query);
 	if (check_login()) { 
 		echo '<table id="reply_table">';
+		echo '<tr><th>작성자</th>';
+		echo '<th>내용</th>';
+		echo '<th colspan=2>수정/삭제</th></tr>';
 		while ($row = mysqli_fetch_assoc($result_set)) {
 			if ($number === $row['post_id']) {
-				echo '<tr id="reply_id'.$row['comment_id'].'"><th>작성자</th>';
-				echo '<th>내용</th>';
-				echo '<th colspan=2>수정/삭제</th></tr>';
-				echo '<td>'.$row['writer'].'</td>';
+				echo '<tr>';
+				echo '<td id="reply_id'.$row['comment_id'].'">'.$row['writer'].'</td>';
 				echo '<td id='.$row['comment_id'].'>'.htmlspecialchars($row['content']).'</td>';
+				echo '<td>';
+				echo '<form action="change2_db.php" method="post">';
+				echo '<input type="hidden" name="id" value='.$id.'>';
+				echo '<input type="hidden" name="post_id" value='.$number.'>';
+				echo '<input type="hidden" name="comment_id" value='.$row['comment_id'].'>';
 				if($id == $row['writer']) { //자신의 댓글만 수정/삭제 가능
-					echo '<td>';
-					echo '<form action="change2_db.php" method="post">';
-					echo '<input type="hidden" name="id" value='.$id.'>';
-					echo '<input type="hidden" name="post_id" value='.$number.'>';
-					echo '<input type="hidden" name="comment_id" value='.$row['comment_id'].'>';
 					echo '<input type="button" value="수정" onClick="editReply(this,'.$row['comment_id'].',this.form)">';
-					echo '</form>';
-					echo '</td>';
-					echo '<td>';
+					} else {
+						echo '<input type="button" value="수정" disabled="true" onClick="editReply(this,'.$row['comment_id'].',this.form)">';
+					}
+				echo '</form>';
+				echo '</td>';
+				echo '<td>';
+				if($id == $row['writer']) {
 					echo '<input type="button" value="삭제" 
 					onClick="deleteReply('.$row['comment_id'].')">';
-					echo '</td>';
+				} else {
+					echo '<input type="button" value="삭제" disabled="true"
+					onClick="deleteReply('.$row['comment_id'].')">';
 				}
+				echo '</td>';
+				echo '</tr>';
 			}
 		}
 		echo '</table>';
