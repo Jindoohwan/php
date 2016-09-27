@@ -89,7 +89,6 @@ function ajaxDeleteReply(replyId) {
 		async: false,
 		data: { comment_id: replyId },
 		success: function(result) {
-			alert(result);
 		},
 		error: function(xhr) {
 			alert('ajaxDeleteReply');
